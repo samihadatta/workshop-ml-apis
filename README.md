@@ -86,7 +86,7 @@ Next function! highlightFaces. Again, pretty self explanatory. We want to make s
 
 There are also four main parts of this function. The initial setup, the opening of the image in canvas, the drawing of the boxes around our faces, and the writing to our output file.
 
-*The Set Up*
+*The Set Up!*
 ```javascript
 const {promisify} = require('util');
 const readFile = promisify(fs.readFile);
@@ -96,6 +96,7 @@ const Image = Canvas.Image;
 Here we prep our input image, so just copy paste that in your function.
 
 *Opening Canvas!*
+
 Now we want to open our original image in node canvas so we can draw on it. First we want to instantiate a new image. Let's call that img. Then, we want to assign our image (lowercase variable from above), to img.src. Again, set two new variables, canvas and context. With canvas, create a new Canvas as `new Canvas.Canvas(img.width, img.height)`. Then get it's context, using `canvas.getContext('2d');`. Now finally call drawImage on the context variable, with the following parameters: img, 0, 0, img.width, img.height. Now that was a lot. In case you didn't get it all, look below.
 
 <details>
@@ -110,7 +111,8 @@ Now we want to open our original image in node canvas so we can draw on it. Firs
  ```
 </details>
 
-*The FUN part*
+*The FUN part!*
+
 Finally, we get to highlight the faces! If you want to get fancy and learn more Canvas notation, click [here](https://eloquentjavascript.net/17_canvas.html). You can draw a bunch of fun things. But for now, we're gonna stick to a box. The general idea is, for each face in faces, we want to draw lines that outline the bounds of the face, thus drawing a rectangle. Try it yourself!
 <details>
  <summary>See the code!</summary>
@@ -135,8 +137,9 @@ faces.forEach(face => {
  ```
 </details>
 
-*Write the results to output*
-Lastly, we put all our results into an output file, using the following code.
+*Write the results to output!*
+
+Lastly, we put all our results into an output file, using the following.
 ```javascript
 console.log(`Writing to file ${outputFile}`);
 const writeStream = fs.createWriteStream(outputFile);
@@ -150,7 +153,22 @@ await new Promise((resolve, reject) => {
    });
 ```
 
+Now for the main. You can figure this one out, but here's the structure, for starters. Make sure you are calling each function correctly. *Hint: These are asynchronous functions! You may need to a-wait!*
+```javascript
+async function main(inputFile, outputFile) {
+    const Canvas = require('canvas');
+    outputFile = outputFile || 'out.png';
+    /* your code here! console logs may be helpful... */
+}
 
+const args = process.argv.slice(2);
+main(...args).catch(console.error);
+```
+And now! What you've been waiting for! Running the code!
+
+`node faceDetection tim.png`
+
+Yay!
 
 ## Summary / What you Learned
 
