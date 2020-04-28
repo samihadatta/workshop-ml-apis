@@ -185,6 +185,5 @@ Yay!
 
 
 ## Resources
-https://cloud.google.com/vision/docs/face-tutorial#nodejs 
-https://cloud.google.com/docs/authentication/getting-started was used as a resource
-* cite any resources
+*https://cloud.google.com/vision/docs/face-tutorial#nodejs 
+*https://cloud.google.com/docs/authentication/getting-started
