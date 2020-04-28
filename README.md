@@ -2,7 +2,7 @@
 
 ![](http://i.giphy.com/eUh8NINbZf9Ys.gif)
 
-Brief motivation here as well as in presentation
+Brief motivation here as well as in presentation aka why do we want to learn about this !
 
 ## Overview
 Today, we're going to implement  a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
@@ -178,10 +178,10 @@ Yay!
 
 ## Reflection
 
-*2 questions for the workshop participants to answer (very short answer) when they submit the workshop. These should try to get at something core to the workshop, the what and the why.*
+*Some quuestions for reflection on our workshop today!*
 
-* [ ] 2 reflection questions
-* [ ] 2 reflection questions
+* [ ] What can machine learning be used for? 
+* [ ] Another question !!!!!!!!
 
 
 ## Resources
