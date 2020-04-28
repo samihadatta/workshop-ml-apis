@@ -1,11 +1,11 @@
 # CS52 Workshops:  Machine Learning APIs
 
-![](http://i.giphy.com/eUh8NINbZf9Ys.gif)
+![](https://www.routee.net/wp-content/uploads/2016/03/photo-2.png)
 
 Brief motivation here as well as in presentation aka why do we want to learn about this !
 
 ## Overview
-Today, we're going to implement  a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
+Today, we're going to implement a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
 
 
 ![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
@@ -220,10 +220,10 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 ## Reflection
 
-*Some quuestions for reflection on our workshop today!*
+*Some questions for reflection on our workshop today!*
 
-* [ ] What can machine learning be used for? Give some examples.
-* [ ] Today we wrote a script for using an ML API that is accessible through the commandline. How could we use this script to make a simple website where: the user specifies an input image and the website displays the resultant annotated image?
+* [ ] What can machine learning be used for? Give us some examples!
+* [ ] Maybe you tested the script on an image and it didn't find all the faces in it... why might this be?
 
 
 ## Resources
