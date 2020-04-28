@@ -11,7 +11,7 @@ Today, we're going to implement  a machine learning facial recognition program. 
 ![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
 
 ## Setup
-1. Navigate to a new directory where you'd like this workshop to live on your computer. 
+1. Navigate to a new directory. 
 2. Get the Google Cloud Vision API library and Canvas, which we use to get the pictures and draw on them...
 ```
 yarn add -- save @google-cloud/vision
@@ -56,7 +56,7 @@ yarn add canvas
 5. Now, let's navigate to the [Google Cloud APIs page](https://console.cloud.google.com/projectselector2/home/dashboard?_ga=2.77990804.124612528.1588022003-1968968773.1588022003). This is basically what we did with the youtube video API in SA4! 
 You can use the same project you used for SA4 or you can make a new project.
 
-To use this API, make sure you enable billing in the project. Don't worry, we'll remind you to remove it after you get it working. Open up the dashboard of your project, go to billing, and create a free trial account by pressing 'Link a billing account'. There is no automatic billing after the free trial, so you won't be charged. They just want to know you're a human being, apparently. 
+- To use this API, make sure you enable billing in the project. Don't worry, we'll remind you to remove it after you get it working. Open up the dashboard of your project, go to billing, and create a free trial account by pressing 'Link a billing account'. There is no automatic billing after the free trial, so you won't be charged. They just want to know you're a human being, apparently. 
 
 6. Now we need to make a connection from our project to the Cloud Vision API. From project dashboard (click Google Cloud Platform to return to the dashboard) go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. To do this, click **Create Credentials** and select **Service Account** from the dropdown menu. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project. Next, click **Create Key** to download a JSON file with your service account key. Make sure you've finished up the setup process.
 
@@ -85,7 +85,7 @@ Our code is made up of three *async* functions. Can you guess what these will be
 
 If you guessed detectFaces, highlightFaces, and main, then you were right!
 
-### `detectFaces`
+### detectFaces
 `detectFaces` will, as it sounds like, detect faces. It will take an input file as a parameter and return an array of faces that it finds. How does it find these faces? Machine learning, of course! Let's write the skeleton of this function as follows.
 
 ```javascript
@@ -105,7 +105,7 @@ console.log(`Found ${numFaces} face${numFaces === 1 ? '' : 's'}.`);
 ```
 to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
 
-### `highlightFaces`
+### highlightFaces
 Next function! `highlightFaces`. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
 
 There are also four main parts of this function. The initial setup, the opening of the image in canvas, the drawing of the boxes around our faces, and the writing to our output file.
@@ -177,7 +177,7 @@ await new Promise((resolve, reject) => {
    });
 ```
 
-### `main`
+### main
 Now for the main. You can figure this one out, but here's the structure, for starters. Make sure you are calling each of the above functions correctly. *Hint: These are asynchronous functions! You may need to a-wait!*
 ```javascript
 async function main(inputFile, outputFile) {
@@ -224,7 +224,7 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 *Some quuestions for reflection on our workshop today!*
 
-* [ ] What can machine learning be used for? Give some use cases.
+* [ ] What can machine learning be used for? Give some examples.
 * [ ] Today we wrote a simple script for using an ML API that is accessible through the commandline. How could we use this script to make a website where: the user specifies an input image and the website displays the resultant annotated image?
 
 
