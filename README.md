@@ -6,6 +6,8 @@ Brief motivation here as well as in presentation aka why do we want to learn abo
 
 ## Overview
 Today, we're going to implement  a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
+
+
 ![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
 
 ## Setup
