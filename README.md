@@ -56,7 +56,7 @@ We can call it ml-api-workshop or something similar. Whatever you want, really.
 
 To use this API, make sure you enable billing in the project. Don't worry, we'll remind you to remove it after you get it working. Open up the dashboard of your project, go to billing, and create a free trial account by pressing 'Link a billing account'. There is no automatic billing after the free trial, so you won't be charged. They just want to know you're a human being, apparently. 
 
-Now we need to make a connection from our project to the Cloud Vision API. From project dashboard go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project.
+Now we need to make a connection from our project to the Cloud Vision API. From project dashboard (click Google Cloud Platform to return to the dashboard) go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. To do this, click **Create Credentials** and select **Service Account** from the dropdown menu. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project. Next, click **Create Key** to download a JSON file with your service account key.
 
 To make sure your credentials are kept private, the key information in the JSON file stays in your JSON file, aka local to your computer and your computer only. To make sure our project itself can access it, we set an environment variable in our command line. Make sure you provide an **absolute path** to the JSON file, as opposed to a relative one, else it won't work! `export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"`
 
@@ -78,14 +78,20 @@ Our code is made up of three *async* functions. Can you guess what these will be
 
 If you guessed detectFaces, highlightFaces, and main, then you were right!
 
-detectFaces will, as it sounds like, detect faces. It will take an inputFile as a parameter and return an array of faces that it 'found'. How does it find these faces? Machine learning, of course!
+detectFaces will, as it sounds like, detect faces. It will take an inputFile as a parameter and return an array of faces that it 'found'. How does it find these faces? Machine learning, of course! Let's write the skeleton of this function as follows.
 
-First we instantiate a request, and then we make a call to our api.
+```javascript
+async function detectFaces(inputFile) {
+    // Some code here 
+}
+```
+
+Inside detectFaces(), we first need to instantiate a request and then make a call to our api.
 ```javascript
 const request = {image: {source: {filename: inputFile}}};
 const results = await client.faceDetection(request);
 ```
-From our results, we want to create a variable faces, and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to return faces. We're going to need that.
+From our results, we want to create a variable faces and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces `const numFaces = faces.length;`. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
 
 Next function! highlightFaces. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
 
