@@ -6,6 +6,7 @@ Brief motivation here as well as in presentation aka why do we want to learn abo
 
 ## Overview
 Today, we're going to implement  a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
+![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
 
 ## Setup
 First, get the API library... 
@@ -58,6 +59,8 @@ Now we need to make a connection from our project to the Cloud Vision API. From 
 To make sure your credentials are kept private, the key information in the JSON file stays in your JSON file, aka local to your computer and your computer only. To make sure our project itself can access it, we set an environment variable in our command line. Make sure you provide an **absolute path** to the JSON file, as opposed to a relative one, else it won't work! `export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"`
 
 Awesome. You're set to start coding. Yay.
+
+![](https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif)
 
 ## Step by Step
 
@@ -171,6 +174,8 @@ And now! What you've been waiting for! Running the code!
 Yay!
 
 ![Solution](/img/tim.png)
+
+![](https://media.giphy.com/media/8JW82ndaYfmNoYAekM/giphy.gif)
 
 ## Summary / What you Learned
 
