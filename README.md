@@ -173,7 +173,7 @@ And now! What you've been waiting for! Running the code!
 
 `node faceDetection tim.png`
 
-Yay!
+Yay! Now try testing it out with other pictures that have more faces. The world is your oyster.
 
 ![Solution](/img/tim.png)
 
