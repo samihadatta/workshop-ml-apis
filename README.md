@@ -9,9 +9,11 @@ Today, we're going to implement  a machine learning facial recognition program. 
 
 ## Setup
 First, get the API library... 
-`npm install -- save @google-cloud/vision`  
+`npm install -- save @google-cloud/vision`
+
 Then, get canvas, which we use to get the pictures and draw on them...
 `npm install canvas `
+
 Now create a package.json file (which you should be pretty familiar with by now) and paste in the following code.
 ```json
 {
@@ -44,7 +46,7 @@ Now create a package.json file (which you should be pretty familiar with by now)
   }
 }
 ```
-Then run `npm install` to install all the dependencies we need!
+Then run `npm install` to get all the dependencies we need!
 
 Now, we're going to create a project by clicking on this [link](https://console.cloud.google.com/projectselector2/home/dashboard?_ga=2.77990804.124612528.1588022003-1968968773.1588022003). This is basically what we did with firebase and the youtube video API! 
 We can call it ml-api-workshop or something similar. Whatever you want, really.
@@ -78,25 +80,75 @@ First we instantiate a request, and then we make a call to our api.
 const request = {image: {source: {filename: inputFile}}};
 const results = await client.faceDetection(request);
 ```
-From our results, we want to create a variable faces, and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. Oh yeah, and don't forget to return faces. We're going to need that.
+From our results, we want to create a variable faces, and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to return faces. We're going to need that.
 
 Next function! highlightFaces. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
 
-![screen shots are helpful](img/screenshot.png)
+There are also four main parts of this function. The initial setup, the opening of the image in canvas, the drawing of the boxes around our faces, and the writing to our output file.
 
-:sunglasses: GitHub markdown files [support emoji notation](http://www.emoji-cheat-sheet.com/)
+*The Set Up*
+```javascript
+const {promisify} = require('util');
+const readFile = promisify(fs.readFile);
+const image = await readFile(inputFile);
+const Image = Canvas.Image;
+```
+Here we prep our input image, so just copy paste that in your function.
 
-Here's a resource for [github markdown](https://guides.github.com/features/mastering-markdown/).
+*Opening Canvas!*
+Now we want to open our original image in node canvas so we can draw on it. First we want to instantiate a new image. Let's call that img. Then, we want to assign our image (lowercase variable from above), to img.src. Again, set two new variables, canvas and context. With canvas, create a new Canvas as `new Canvas.Canvas(img.width, img.height)`. Then get it's context, using `canvas.getContext('2d');`. Now finally call drawImage on the context variable, with the following parameters: img, 0, 0, img.width, img.height. Now that was a lot. In case you didn't get it all, look below.
 
-## Use collapsible sections when you are giving away too much code
 <details>
- <summary>Click to expand!</summary>
- 
- ```js
- // some code
- console.log('hi');
+ <summary>See the code!</summary>
+  
+ ```javascript
+ const img = new Image();
+ img.src = image;
+ const canvas = new Canvas.Canvas(img.width, img.height);
+ const context = canvas.getContext('2d');
+ context.drawImage(img, 0, 0, img.width, img.height);
  ```
 </details>
+
+*The FUN part*
+Finally, we get to highlight the faces! If you want to get fancy and learn more Canvas notation, click [here](https://eloquentjavascript.net/17_canvas.html). You can draw a bunch of fun things. But for now, we're gonna stick to a box. The general idea is, for each face in faces, we want to draw lines that outline the bounds of the face, thus drawing a rectangle. Try it yourself!
+<details>
+ <summary>See the code!</summary>
+  
+```javascript
+context.strokeStyle = 'rgba(0,255,0,0.8)';
+context.lineWidth = '5';
+faces.forEach(face => {
+   context.beginPath();
+   let origX = 0;
+   let origY = 0;
+   face.boundingPoly.vertices.forEach((bounds, i) => {
+      if (i === 0) {
+        origX = bounds.x;
+        origY = bounds.y;
+      }
+      context.lineTo(bounds.x, bounds.y);
+    });
+    context.lineTo(origX, origY);
+    context.stroke();
+});
+ ```
+</details>
+
+*Write the results to output*
+Lastly, we put all our results into an output file, using the following code.
+```javascript
+console.log(`Writing to file ${outputFile}`);
+const writeStream = fs.createWriteStream(outputFile);
+const pngStream = canvas.pngStream();
+  
+await new Promise((resolve, reject) => {
+   pngStream
+      .on('data', chunk => writeStream.write(chunk))
+      .on('error', reject)
+      .on('end', resolve);
+   });
+```
 
 
 
