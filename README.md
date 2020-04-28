@@ -61,7 +61,7 @@ Awesome. You're set to start coding. Yay.
 
 ## Step by Step
 
-First, for basic setup, we gotta make a connection to the API. This is similar to how we started our code in datastore.js through firebase. First we require the API, then we create a client. And we need fs so we can use Node's file system.
+First, for basic setup, we gotta make a script let's call it faceDetection.js. Then we need to give it a connection to the API. This is similar to how we started our code in datastore.js through firebase. First we require the API, then we create a client. And we need fs so we can use Node's file system.
 
 ```javascript
 const vision = require('@google-cloud/vision');
