@@ -170,6 +170,8 @@ And now! What you've been waiting for! Running the code!
 
 Yay!
 
+![Solution](/img/tim.png)
+
 ## Summary / What you Learned
 
 * [ ] can be checkboxes
