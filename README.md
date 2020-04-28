@@ -185,5 +185,5 @@ Yay!
 
 
 ## Resources
-*https://cloud.google.com/vision/docs/face-tutorial#nodejs 
-*https://cloud.google.com/docs/authentication/getting-started
+* https://cloud.google.com/vision/docs/face-tutorial#nodejs 
+* https://cloud.google.com/docs/authentication/getting-started
