@@ -91,7 +91,7 @@ Inside detectFaces(), we first need to instantiate a request and then make a cal
 const request = {image: {source: {filename: inputFile}}};
 const results = await client.faceDetection(request);
 ```
-From our results, we want to create a variable faces and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces `const numFaces = faces.length;`. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that. 
+From our results, we want to create a variable faces and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces `const numFaces = faces.length;`. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
 
 Next function! highlightFaces. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
 
