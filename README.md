@@ -13,7 +13,7 @@ Today, we're going to implement  a machine learning facial recognition program. 
 ## Setup
 1. Navigate to a new directory. 
 2. Get the Google Cloud Vision API library and Canvas, which we use to get the pictures and draw on them...
-```
+```bash
 yarn add -- save @google-cloud/vision
 yarn add canvas
 ```
@@ -61,7 +61,7 @@ You can use the same project you used for SA4 or you can make a new project.
 6. Now we need to make a connection from our project to the Cloud Vision API. From project dashboard (click Google Cloud Platform to return to the dashboard) go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. To do this, click **Create Credentials** and select **Service Account** from the dropdown menu. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project. Next, click **Create Key** to download a JSON file with your service account key. Make sure you've finished up the setup process.
 
 7. To make sure your credentials are kept private, the key information in the JSON file stays in your JSON file, aka local to your computer and your computer only. To make sure our project itself can access it, we set an environment variable in our command line. Make sure you provide an **absolute path** to the JSON file, as opposed to a relative one, else it won't work!
-```
+```bash
 export GOOGLE_APPLICATION_CREDENTIALS="[/THE/ABSOLUTE/PATH/]"
 ```
 
@@ -204,9 +204,7 @@ console.log('Finished!');
 </details>
 
 
-And now! What you've been waiting for! Running the code!
-
-`node faceDetection tim.png`
+And now! What you've been waiting for! Running the code! `node faceDetection tim.png`
 
 Yay! Now try testing it out with other pictures that have more faces. The world is your oyster.
 
@@ -225,7 +223,7 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 *Some quuestions for reflection on our workshop today!*
 
 * [ ] What can machine learning be used for? Give some examples.
-* [ ] Today we wrote a simple script for using an ML API that is accessible through the commandline. How could we use this script to make a website where: the user specifies an input image and the website displays the resultant annotated image?
+* [ ] Today we wrote a script for using an ML API that is accessible through the commandline. How could we use this script to make a simple website where: the user specifies an input image and the website displays the resultant annotated image?
 
 
 ## Resources
