@@ -11,13 +11,14 @@ Today, we're going to implement  a machine learning facial recognition program. 
 ![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
 
 ## Setup
-First, get the API library... 
-`npm install -- save @google-cloud/vision`
+1. Navigate to a new directory where you'd like this workshop to live on your computer. 
+2. Get the Google Cloud Vision API library and Canvas, which we use to get the pictures and draw on them...
+```
+yarn add -- save @google-cloud/vision
+yarn add canvas
+```
 
-Then, get canvas, which we use to get the pictures and draw on them...
-`npm install canvas `
-
-Now create a package.json file (which you should be pretty familiar with by now) and paste in the following code.
+3. `yarn` should have created a `package.json` file with a few dependencies. Open up that `package.json` file (which you should be pretty familiar with by now) and paste in the following code.
 ```json
 {
   "name": "nodejs-docs-samples-vision",
@@ -35,7 +36,8 @@ Now create a package.json file (which you should be pretty familiar with by now)
   },
   "dependencies": {
     "@google-cloud/vision": "^1.11.0",
-    "canvas": "^2.0.0",
+    "canvas": "^2.6.1",
+    "save": "^2.4.0",
     "mathjs": "^6.0.0",
     "natural": "^0.6.1",
     "redis": "^3.0.0",
@@ -49,16 +51,21 @@ Now create a package.json file (which you should be pretty familiar with by now)
   }
 }
 ```
-Then run `npm install` to get all the dependencies we need!
+4. Then run `yarn install` to get all the dependencies we need!
 
-Now, we're going to create a project by clicking on this [link](https://console.cloud.google.com/projectselector2/home/dashboard?_ga=2.77990804.124612528.1588022003-1968968773.1588022003). This is basically what we did with firebase and the youtube video API! 
-We can call it ml-api-workshop or something similar. Whatever you want, really.
+5. Now, let's navigate to the [Google Cloud APIs page](https://console.cloud.google.com/projectselector2/home/dashboard?_ga=2.77990804.124612528.1588022003-1968968773.1588022003). This is basically what we did with the youtube video API in SA4! 
+You can use the same project you used for SA4 or you can make a new project.
 
 To use this API, make sure you enable billing in the project. Don't worry, we'll remind you to remove it after you get it working. Open up the dashboard of your project, go to billing, and create a free trial account by pressing 'Link a billing account'. There is no automatic billing after the free trial, so you won't be charged. They just want to know you're a human being, apparently. 
 
-Now we need to make a connection from our project to the Cloud Vision API. From project dashboard (click Google Cloud Platform to return to the dashboard) go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. To do this, click **Create Credentials** and select **Service Account** from the dropdown menu. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project. Next, click **Create Key** to download a JSON file with your service account key.
+6. Now we need to make a connection from our project to the Cloud Vision API. From project dashboard (click Google Cloud Platform to return to the dashboard) go to **APIs & Services > Credentials**. Instead of making an API key, as we've done in previous assignments, create a **service account** and download your key to your computer as a JSON file. To do this, click **Create Credentials** and select **Service Account** from the dropdown menu. When you make this service account, be sure to select **Project > Owner** from the role list. This gives your service account full access to the project. Next, click **Create Key** to download a JSON file with your service account key. Make sure you've finished up the setup process.
 
-To make sure your credentials are kept private, the key information in the JSON file stays in your JSON file, aka local to your computer and your computer only. To make sure our project itself can access it, we set an environment variable in our command line. Make sure you provide an **absolute path** to the JSON file, as opposed to a relative one, else it won't work! `export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"`
+7. To make sure your credentials are kept private, the key information in the JSON file stays in your JSON file, aka local to your computer and your computer only. To make sure our project itself can access it, we set an environment variable in our command line. Make sure you provide an **absolute path** to the JSON file, as opposed to a relative one, else it won't work!
+```
+export GOOGLE_APPLICATION_CREDENTIALS="[/THE/ABSOLUTE/PATH/]"
+```
+
+*Note:* You may have to manually enable the Cloud Vision API. If you encounter runtime errors, go to **APIs & Services > Library** and search for "cloud vision API".
 
 Awesome. You're set to start coding. Yay.
 
@@ -66,7 +73,7 @@ Awesome. You're set to start coding. Yay.
 
 ## Step by Step
 
-First, for basic setup, we gotta make a script. Let's call it faceDetection.js. Then we need to give it a connection to the API. This is similar to how we started our code in datastore.js through firebase. First we require the API, then we create a client. And we need fs so we can use Node's file system.
+Let's make our script. We'll call it `faceDetection.js`. First, we need to give it a connection to the API. This is similar to how we started our code in datastore.js through Firebase. We require the API, create a client for the API, and require `fs` so we can use Node's file system.
 
 ```javascript
 const vision = require('@google-cloud/vision');
@@ -78,7 +85,8 @@ Our code is made up of three *async* functions. Can you guess what these will be
 
 If you guessed detectFaces, highlightFaces, and main, then you were right!
 
-detectFaces will, as it sounds like, detect faces. It will take an inputFile as a parameter and return an array of faces that it 'found'. How does it find these faces? Machine learning, of course! Let's write the skeleton of this function as follows.
+### `detectFaces`
+`detectFaces` will, as it sounds like, detect faces. It will take an input file as a parameter and return an array of faces that it finds. How does it find these faces? Machine learning, of course! Let's write the skeleton of this function as follows.
 
 ```javascript
 async function detectFaces(inputFile) {
@@ -86,14 +94,19 @@ async function detectFaces(inputFile) {
 }
 ```
 
-Inside detectFaces(), we first need to instantiate a request and then make a call to our api.
+Inside `detectFaces()`, we first need to instantiate a request and then make a call to our api.
 ```javascript
 const request = {image: {source: {filename: inputFile}}};
 const results = await client.faceDetection(request);
 ```
-From our results, we want to create a variable faces and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces `const numFaces = faces.length;`. Then add `console.log('Found ${numFaces} face${numFaces === 1 ? '' : 's'}.');` to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
+From our results, we want to create a variable `faces` and assign it `results[0].faceAnnotations`. Then we want to store the number of faces it finds. Let's name that numFaces `const numFaces = faces.length;`. Then add
+```javascript
+console.log(`Found ${numFaces} face${numFaces === 1 ? '' : 's'}.`);
+```
+to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
 
-Next function! highlightFaces. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
+### `highlightFaces`
+Next function! `highlightFaces`. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
 
 There are also four main parts of this function. The initial setup, the opening of the image in canvas, the drawing of the boxes around our faces, and the writing to our output file.
 
@@ -164,7 +177,8 @@ await new Promise((resolve, reject) => {
    });
 ```
 
-Now for the main. You can figure this one out, but here's the structure, for starters. Make sure you are calling each function correctly. *Hint: These are asynchronous functions! You may need to a-wait!*
+### `main`
+Now for the main. You can figure this one out, but here's the structure, for starters. Make sure you are calling each of the above functions correctly. *Hint: These are asynchronous functions! You may need to a-wait!*
 ```javascript
 async function main(inputFile, outputFile) {
     const Canvas = require('canvas');
@@ -175,6 +189,21 @@ async function main(inputFile, outputFile) {
 const args = process.argv.slice(2);
 main(...args).catch(console.error);
 ```
+
+<details>
+ <summary>See the code!</summary>
+  
+ ```javascript
+const Canvas = require('canvas');
+outputFile = outputFile || 'out.png';
+const faces = await detectFaces(inputFile);
+console.log('Highlighting...');
+await highlightFaces(inputFile, faces, outputFile, Canvas);
+console.log('Finished!');
+ ```
+</details>
+
+
 And now! What you've been waiting for! Running the code!
 
 `node faceDetection tim.png`
@@ -185,6 +214,8 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 ![](https://media.giphy.com/media/8JW82ndaYfmNoYAekM/giphy.gif)
 
+**Don't forget to remove billing from your project when you're done!**
+
 ## Summary / What you Learned
 
 * [ ] can be checkboxes
@@ -193,8 +224,8 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 *Some quuestions for reflection on our workshop today!*
 
-* [ ] What can machine learning be used for? 
-* [ ] Another question !!!!!!!!
+* [ ] What can machine learning be used for? Give some use cases.
+* [ ] Today we wrote a simple script for using an ML API that is accessible through the commandline. How could we use this script to make a website where: the user specifies an input image and the website displays the resultant annotated image?
 
 
 ## Resources
