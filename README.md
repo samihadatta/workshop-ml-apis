@@ -222,7 +222,7 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 *Some questions for reflection on our workshop today!*
 
-* [ ] What can machine learning be used for? How can we implement this API into a website? Give us some examples!
+* [ ] What can machine learning be used for? How can we implement this API in a website? Give us some examples!
 * [ ] Maybe you tested the script on an image and it didn't find all the faces in it... why might this be?
 
 
