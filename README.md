@@ -2,7 +2,7 @@
 
 ![](https://www.routee.net/wp-content/uploads/2016/03/photo-2.png)
 
-There is more data in the world than ever before. Humans don't have the capability to effectively use and understand all that data on our own. In every sector from healthcare to entertainment, machine learning allows the ability to interpret this data and predict outcomes. We want to be able to harness this functionality in our own websites, which is made easy by using preexisting machine learning APIs!
+There is more data in the world than ever before. In every sector from healthcare to entertainment, machine learning (ML) allows the ability to interpret big data and predict outcomes. We would ideally want to use and understand all that data on our own, but not everyone has the ability to create ML models, perhaps due to a lack of access to education or to computing resources. We want to be able to harness the power of ML in our own websites, even if we don't know how to implement the tech or have access to large computers to run them on. But, this is made super easy by using **preexisting machine learning APIs!** With ML APIs, we can classify images and video, translate between different languages, create a recommendation engine, and even make your own custom model! Woot woot!
 
 ## Overview
 Today, we're going to implement a machine learning facial recognition program. When given a picture, we are going to find faces, highlight them, and see the power of Google Cloud Vision API at work! 
