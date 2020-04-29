@@ -65,7 +65,7 @@ You can use the same project you used for SA4 or you can make a new project.
 export GOOGLE_APPLICATION_CREDENTIALS="[/THE/ABSOLUTE/PATH/]"
 ```
 
-*Note:* You may have to manually enable the Cloud Vision API. If you encounter runtime errors, go to **APIs & Services > Library** and search for "cloud vision API".
+*Note: You may have to manually enable the Cloud Vision API. If you encounter runtime errors, go to **APIs & Services > Library**, search for "cloud vision API", click on the result and enable it.*
 
 Awesome. You're set to start coding. Yay.
 
@@ -163,7 +163,7 @@ faces.forEach(face => {
 
 *Write the results to output!*
 
-Lastly, we put all our results into an output file, using the following.
+Lastly, we put all our results into an output file, using the following. (Notice the use of data streams here)
 ```javascript
 console.log(`Writing to file ${outputFile}`);
 const writeStream = fs.createWriteStream(outputFile);
@@ -204,7 +204,7 @@ console.log('Finished!');
 </details>
 
 
-And now! What you've been waiting for! Running the code! `node faceDetection tim.png`
+And now! What you've been waiting for! Running the code! Type this into the command line: `node faceDetection tim.png`
 
 Yay! Now try testing it out with other pictures that have more faces. The world is your oyster.
 
@@ -218,6 +218,8 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 * [ ] How to use Google Cloud Vision for facial recognition
 * [ ] How to use Node Canvas
+* [ ] How to use data streams to write image files
+* [ ] How to run js scripts from the command line
 * [ ] How we can use ML!! and why ML is so important!!
 
 ## Reflection
