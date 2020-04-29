@@ -216,7 +216,9 @@ Yay! Now try testing it out with other pictures that have more faces. The world 
 
 ## Summary / What you Learned
 
-* [ ] can be checkboxes
+* [ ] How to use Google Cloud Vision for facial recognition
+* [ ] How to use Node Canvas
+* [ ] How we can use ML!! and why ML is so important!!
 
 ## Reflection
 
