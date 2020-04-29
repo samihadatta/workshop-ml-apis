@@ -2,10 +2,10 @@
 
 ![](https://www.routee.net/wp-content/uploads/2016/03/photo-2.png)
 
-Brief motivation here as well as in presentation aka why do we want to learn about this !
+There is more data in the world than ever before. Humans don't have the capability to effectively use and understand all that data on our own. In every sector from healthcare to entertainment, machine learning allows the ability to interpret this data and predict outcomes. We want to be able to harness this functionality in our own websites, which is made easy by using preexisting machine learning APIs!
 
 ## Overview
-Today, we're going to implement a machine learning facial recognition program. When given a picture, we are going to see the power of Cloud Vision API at work! 
+Today, we're going to implement a machine learning facial recognition program. When given a picture, we are going to find faces, highlight them, and see the power of Google Cloud Vision API at work! 
 
 
 ![](https://media.giphy.com/media/7xkxbhryQO7hm/giphy.gif)
@@ -103,7 +103,7 @@ From our results, we want to create a variable `faces` and assign it `results[0]
 ```javascript
 console.log(`Found ${numFaces} face${numFaces === 1 ? '' : 's'}.`);
 ```
-to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that here. 
+to print to console however many faces were found in the input image. Pretty cool. :sunglasses: Oh yeah, and don't forget to `return faces;` at the end of our function. We're going to need that. 
 
 ### highlightFaces
 Next function! `highlightFaces`. Again, pretty self explanatory. We want to make sure the API worked, so we want to highlight the faces that it finds. This function will take four parameters: inputFile, faces, outputFile, Canvas. And it's gonna deal with promises. Fun.
