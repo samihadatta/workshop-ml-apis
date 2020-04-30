@@ -206,6 +206,8 @@ console.log('Finished!');
 
 And now! What you've been waiting for! Running the code! Type this into the command line: `node faceDetection tim.png`
 
+You probably don't have pictures of Tim just laying around on your computer, so replace tim.png with a picture of your choosing by dragging it to the directory.
+
 Yay! Now try testing it out with other pictures that have more faces. The world is your oyster.
 
 ![Solution](/img/tim.png)
