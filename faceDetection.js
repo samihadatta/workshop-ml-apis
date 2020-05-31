@@ -39,8 +39,10 @@ async function highlightFaces(inputFile, faces, outputFile, Canvas) {
             origY = bounds.y;
         }
         context.lineTo(bounds.x, bounds.y);
+        // context.quadraticCurveTo(bounds.x, bounds.y);
         });
         context.lineTo(origX, origY);
+        // context.quadraticCurveTo(origX, origY);
         context.stroke();
     });
 
